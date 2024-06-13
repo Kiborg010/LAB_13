@@ -118,7 +118,7 @@ public class Program
             Console.Clear();
 
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Исходная первая коллекция: ");
+            Console.WriteLine($"Исходная таблица: ");
             Console.ResetColor();
             collection.Print();
             Console.WriteLine();
@@ -188,6 +188,10 @@ public class Program
                 Console.ResetColor();
                 Console.WriteLine("Введите заменяющий элемент");
                 Car carToAdd = TakeCarInformation(collection);
+                if (collection.tableValue.Contains(carToAdd)) //Нельзя добавлять элемент точно с такими же параметрами
+                {
+                    throw new Exception($"Такой элемент уже есть: \n{carToAdd.ToString()} \nОн добавлен не будет");
+                }
                 collection[carToSearch] = carToAdd;
                 Console.WriteLine("\nИзменённая таблица: \n");
                 collection.Print();
@@ -221,12 +225,29 @@ public class Program
                     }
                 case 3:
                     {
-                        Adding(collectionOne);
+                        try
+                        {
+                            Adding(collectionOne);
+                            journalOne.PrintJournal();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.Message}");
+                            TrashAnswer();
+                        }
                         break;
                     }
                 case 4:
                     {
-                        Adding(collectionTwo);
+                        try
+                        {
+                            Adding(collectionTwo);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.Message}");
+                            TrashAnswer();
+                        }
                         break;
                     }
                 case 5:
@@ -241,12 +262,28 @@ public class Program
                     }
                 case 7:
                     {
-                        Replacing(collectionOne);
+                        try
+                        {
+                            Replacing(collectionTwo);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.Message}");
+                            TrashAnswer();
+                        }
                         break;
                     }
                 case 8:
                     {
-                        Replacing(collectionTwo);
+                        try
+                        {
+                            Replacing(collectionTwo);
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.Message}");
+                            TrashAnswer();
+                        }
                         break;
                     }
                 case 9: 

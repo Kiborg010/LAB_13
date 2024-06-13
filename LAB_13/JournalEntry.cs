@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LAB_13
 {
-    internal class JournalEntry
+    public class JournalEntry
     {
         public string Name { get; set; }
 
@@ -14,11 +15,11 @@ namespace LAB_13
 
         public string Data { get; set; }
 
-        public JournalEntry(string name, string type, string data)
+        public JournalEntry(string name, string type, Car data)
         {
             Name = name;
             Type = type;
-            Data = data;
+            Data = data.ToString();
         }
 
         public override string ToString()

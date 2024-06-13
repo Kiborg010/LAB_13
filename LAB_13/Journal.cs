@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace LAB_13
 {
-    internal class Journal
+    public class Journal
     {
-        List<JournalEntry> journal = new List<JournalEntry>();
+        public List<JournalEntry> journal = new List<JournalEntry>();
         public void WriteRecord(object source, CollectionHandlerEventArgs args)
         {
-            journal.Add(new JournalEntry(((MyObservableCollection<Car>)source).Name, args.changeType, args.changeObject.ToString()));
+            journal.Add(new JournalEntry(((MyObservableCollection<Car>)source).Name, args.changeType, (Car)args.changeObject));
         }
 
         public void PrintJournal()

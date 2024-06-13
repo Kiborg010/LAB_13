@@ -9,9 +9,9 @@ using LAB_12_4;
 namespace LAB_13
 {
 
-    delegate void CollectionHandler(object source, CollectionHandlerEventArgs args);
+    public delegate void CollectionHandler(object source, CollectionHandlerEventArgs args);
 
-    internal class MyObservableCollection<T>: MyCollection<T> where T : IInit, ICloneable, new()
+    public class MyObservableCollection<T>: MyCollection<T> where T : IInit, ICloneable, new()
     {
         public string Name { get; set; }
 
@@ -37,7 +37,7 @@ namespace LAB_13
         public new void Add(T item)
         {
             base.Add(item);
-            OnCollectionCountChanged(this, new CollectionHandlerEventArgs("Произошло добавлени элемента", item));
+            OnCollectionCountChanged(this, new CollectionHandlerEventArgs("Произошло добавлениe элемента", item));
         }
 
         public new bool Remove(T item)
@@ -69,8 +69,9 @@ namespace LAB_13
                 else
                 {
                     int index = FindItem(element);
+                    object previous = tableValue[index].Clone();
                     tableValue[index] = value;
-                    OnCollectionReferenceChanged(this, new CollectionHandlerEventArgs("Произошла замена элемента", value));
+                    OnCollectionReferenceChanged(this, new CollectionHandlerEventArgs("Произошла замена элемента", previous));
                 }
             }
         }
